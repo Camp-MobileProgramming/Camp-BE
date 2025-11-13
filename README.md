@@ -18,14 +18,3 @@ cd <프로젝트 폴더>
 ```bash
 ./gradlew bootRun
 ```
-
-### 3. ngrok 실행
-```bash
-ngrok http 8080
-```
-
-### 4. Forwarding주소 공유
-```bash
-예시)
-Forwarding  https://xxxx-xx-xx-xx.ngrok-free.app
-```

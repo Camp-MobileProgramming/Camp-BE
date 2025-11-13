@@ -11,7 +11,7 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override public void addCorsMappings(CorsRegistry r) {
                 r.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:8081","http://localhost:8080")
+                        .allowedOrigins("http://localhost:8081","http://localhost:8080","https://uriel-radioactive-mariette.ngrok-free.dev")
                         .allowedMethods("GET","POST","PUT","DELETE");
             }
         };

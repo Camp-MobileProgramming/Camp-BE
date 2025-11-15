@@ -40,5 +40,10 @@ public class SignupService {
         );
 
         userRepository.save(user); //저장
+        System.out.println(" [SignupService] 회원가입 성공!");
+        System.out.println("     이메일: " + request.getEmail());
+        System.out.println("     닉네임: " + request.getNickname());
+        System.out.println("     비밀번호: " + request.getPassword());
+
     }
 }

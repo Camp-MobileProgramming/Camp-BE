@@ -39,6 +39,7 @@ public class LoginService {
         String token = jwtTokenProvider.createToken(user);
         System.out.println("[LoginService] 로그인 성공, JWT 생성: " + token);
 
-        return new LoginResponse(token);
+        LoginResponse loginResponse = new LoginResponse(user.getEmail(), user.getNickname(), token);
+        return loginResponse;
     }
 }

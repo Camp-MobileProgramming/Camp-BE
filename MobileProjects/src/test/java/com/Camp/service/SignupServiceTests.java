@@ -1,8 +1,8 @@
 package com.Camp.service;
 
-import com.Camp.domain.User;
-import com.Camp.domain.UserRepository;
-import com.Camp.dto.SignupRequest;
+import com.Camp.domain.user.User;
+import com.Camp.domain.user.UserRepository;
+import com.Camp.dto.signup.SignupRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

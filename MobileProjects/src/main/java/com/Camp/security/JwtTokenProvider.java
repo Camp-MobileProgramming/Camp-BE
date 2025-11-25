@@ -1,6 +1,6 @@
 package com.Camp.security;
 
-import com.Camp.domain.User;
+import com.Camp.domain.user.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.algorithms.Algorithm;

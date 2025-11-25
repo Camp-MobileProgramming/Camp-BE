@@ -1,4 +1,4 @@
-package com.Camp.dto;
+package com.Camp.dto.signup;
 
 import lombok.Getter;
 import lombok.Setter;

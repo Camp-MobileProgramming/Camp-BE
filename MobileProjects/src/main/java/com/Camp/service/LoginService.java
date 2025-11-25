@@ -1,9 +1,9 @@
 package com.Camp.service;
 
-import com.Camp.domain.User;
-import com.Camp.domain.UserRepository;
-import com.Camp.dto.LoginRequest;
-import com.Camp.dto.LoginResponse;
+import com.Camp.domain.user.User;
+import com.Camp.domain.user.UserRepository;
+import com.Camp.dto.login.LoginRequest;
+import com.Camp.dto.login.LoginResponse;
 import com.Camp.security.JwtTokenProvider;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.Camp.domain;
+package com.Camp.domain.user;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

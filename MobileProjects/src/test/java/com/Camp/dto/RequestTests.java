@@ -1,5 +1,7 @@
 package com.Camp.dto;
 
+import com.Camp.dto.signup.EmailVerificationRequest;
+import com.Camp.dto.signup.SignupRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

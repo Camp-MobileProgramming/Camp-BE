@@ -1,10 +1,9 @@
-package com.Camp.dto;
+package com.Camp.dto.signup;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class LoginRequest {
+public class EmailVerificationRequest {
     private String email;
-    private String password;
 }

@@ -1,7 +1,7 @@
 package com.Camp.controller;
 
-import com.Camp.dto.EmailVerificationRequest;
-import com.Camp.dto.SignupRequest;
+import com.Camp.dto.signup.EmailVerificationRequest;
+import com.Camp.dto.signup.SignupRequest;
 import com.Camp.service.SignupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

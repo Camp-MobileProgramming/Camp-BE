@@ -1,8 +1,8 @@
 package com.Camp.service;
 
-import com.Camp.domain.UserRepository;
-import com.Camp.dto.SignupRequest;
-import com.Camp.domain.User;
+import com.Camp.domain.user.UserRepository;
+import com.Camp.dto.signup.SignupRequest;
+import com.Camp.domain.user.User;
 import org.springframework.stereotype.Service;
 
 @Service

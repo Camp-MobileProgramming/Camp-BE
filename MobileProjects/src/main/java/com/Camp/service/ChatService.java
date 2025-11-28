@@ -71,4 +71,13 @@ public class ChatService {
     public List<ChatMessage> getMessages(ChatRoom room) {
         return chatMessageRepository.findByRoomOrderBySentAtAsc(room);
     }
+
+    public List<ChatRoom> getRoomsForUser(User me) {
+        return chatRoomRepository.findByUserAOrUserB(me, me);
+    }
+
+    public ChatMessage getLastMessage(ChatRoom room) {
+        return chatMessageRepository.findTopByRoomOrderBySentAtDesc(room)
+                .orElse(null);
+    }
 }

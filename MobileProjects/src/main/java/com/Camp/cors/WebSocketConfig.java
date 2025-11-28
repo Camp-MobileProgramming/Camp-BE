@@ -1,5 +1,6 @@
 package com.Camp.cors;
 
+import com.Camp.controller.ChatWebSocketHandler;
 import com.Camp.controller.WebSocketController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,10 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 @RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
-    private final WebSocketController handler;
+    private final WebSocketController webSocketLocationhandler;
+    private final ChatWebSocketHandler chatWebSocketHandler;
     @Override public void registerWebSocketHandlers(WebSocketHandlerRegistry reg) {
-        reg.addHandler(handler, "/tracking").setAllowedOrigins("*");
+        reg.addHandler(webSocketLocationhandler, "/tracking").setAllowedOrigins("*");
+        reg.addHandler(chatWebSocketHandler, "/chat-ws").setAllowedOrigins("*");
     }
 }

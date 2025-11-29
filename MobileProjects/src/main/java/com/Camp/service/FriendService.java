@@ -94,7 +94,6 @@ public class FriendService {
         FriendRequest friendRequest = new FriendRequest(requester, receiver);
         friendRequestRepository.save(friendRequest);
     }
-
     public List<FriendResponse> getFriendList(String nickname){
         User me = userRepository.findByNickname(nickname)
                 .orElseThrow(()->new IllegalArgumentException("사용자찾을 수 없음.."));
@@ -102,5 +101,19 @@ public class FriendService {
         return friendShipRepository.findByOwner(me).stream()
                 .map(fs -> new FriendResponse(fs.getFriend().getId(),fs.getFriend().getNickname()))
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public void rejectFriendRequest(String myNickname, String requesterNickname) {
+        User me = userRepository.findByNickname(myNickname)
+                .orElseThrow(()->new IllegalArgumentException("사용자찾을 수 없음.."));
+        User requester = userRepository.findByNickname(requesterNickname)
+                .orElseThrow(()->new IllegalArgumentException("사용자찾을 수 없음.."));
+
+        FriendRequest req = friendRequestRepository
+                .findByRequesterAndReceiverAndStatus(
+                        requester, me, FriendRequestStatus.PENDING
+                )
+                .orElseThrow(() -> new IllegalArgumentException("대기중인 친구 요청이 없습니다."));
+        req.reject();
     }
 }

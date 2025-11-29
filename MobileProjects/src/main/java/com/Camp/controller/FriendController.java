@@ -1,10 +1,7 @@
 package com.Camp.controller;
 
 import com.Camp.domain.friendship.FriendShip;
-import com.Camp.dto.follow.AcceptFriendRequestDto;
-import com.Camp.dto.follow.FriendResponse;
-import com.Camp.dto.follow.PendingFriendResponse;
-import com.Camp.dto.follow.SendFriendRequestDto;
+import com.Camp.dto.follow.*;
 import com.Camp.service.FriendService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +53,7 @@ public class FriendController {
     }
 
     /**
-     * (옵션) 친구 요청 보내기 – 추후 프론트에서 사용 가능
+     * 친구 요청 보내기
      */
     @PostMapping("/request")
     public ResponseEntity<Void> sendFriendRequest(
@@ -74,5 +71,18 @@ public class FriendController {
         String myNickname = extractNickname(authorization);
         List<FriendResponse> friends = friendService.getFriendList(myNickname);
         return ResponseEntity.ok(friends);
+    }
+
+    /**
+     * 친구 거절
+     */
+    @PostMapping("/reject")
+    public ResponseEntity<Void> rejectFriendRequest(
+            @RequestHeader("Authorization") String authorization,
+            @RequestBody RejectFriendRequestDto dto
+    ){
+        String myNickname = extractNickname(authorization);
+        friendService.rejectFriendRequest(myNickname,dto.getRequesterNickname());
+        return ResponseEntity.ok().build();
     }
 }

@@ -12,4 +12,8 @@ public interface FriendShipRepository extends JpaRepository<FriendShip, Long> {
 
     // 이미 친구인지 체크
     boolean existsByOwnerAndFriend(User owner, User friend);
+
+    //친구 수 카운트 (owner기준)
+    long countByOwner(User owner);
+
 }

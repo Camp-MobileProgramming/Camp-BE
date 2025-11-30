@@ -26,6 +26,9 @@ public class ChatRestController {
         ChatRoom room = chatService.getOrCreateRoom(me, target);
         List<ChatMessage> messages = chatService.getMessages(room);
 
+        //방에 들어오면 읽음처리
+        chatService.markMessagesAsRead(room, me);
+
         // DTO변환후 반환
         return messages.stream().map(ChatMessageDto::from).toList();
     }
@@ -83,8 +86,8 @@ public class ChatRestController {
                         }
                     }
 
-                    // 아직 안 읽은 개수는 구현 안 했으니 0으로
-                    dto.setUnreadCount(0);
+                    int unread = chatService.getUnreadCountForRoom(room, meUser);
+                    dto.setUnreadCount(unread);
 
                     return dto;
                 })
@@ -98,5 +101,18 @@ public class ChatRestController {
         private String lastMessage;
         private Long lastTs;
         private int unreadCount;
+    }
+
+    @GetMapping("/unread-count")
+    public UnreadCountResponse getUnreadCount(@RequestParam String me) {
+        int total = chatService.getTotalUnreadCount(me);
+        UnreadCountResponse res = new UnreadCountResponse();
+        res.setTotal(total);
+        return res;
+    }
+
+    @Data
+    static class UnreadCountResponse {
+        private int total;
     }
 }

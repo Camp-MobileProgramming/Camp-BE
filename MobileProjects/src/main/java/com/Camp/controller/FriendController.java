@@ -85,4 +85,9 @@ public class FriendController {
         friendService.rejectFriendRequest(myNickname,dto.getRequesterNickname());
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/count")
+    public ResponseEntity<Long> getFriendCount(@RequestParam("nickname") String nickname) {
+        long count = friendService.getFriendCountByNickname(nickname);
+        return ResponseEntity.ok(count);
+    }
 }

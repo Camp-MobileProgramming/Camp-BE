@@ -34,4 +34,9 @@ public class ChatMessage {
     private LocalDateTime sentAt;
 
     private boolean readFlag;
+
+    //읽음 표시
+    public void markRead() {
+        this.readFlag = true;
+    }
 }

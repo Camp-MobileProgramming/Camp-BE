@@ -80,4 +80,22 @@ public class ChatService {
         return chatMessageRepository.findTopByRoomOrderBySentAtDesc(room)
                 .orElse(null);
     }
+    @Transactional(readOnly = true)
+    public int getTotalUnreadCount(String nickname) {
+        User me = getUserByNickname(nickname);
+        return chatMessageRepository.countByReceiverAndReadFlagIsFalse(me);
+    }
+
+    @Transactional(readOnly = true)
+    public int getUnreadCountForRoom(ChatRoom room, User me) {
+        return chatMessageRepository.countByRoomAndReceiverAndReadFlagIsFalse(room, me);
+    }
+
+    public void markMessagesAsRead(ChatRoom room, String myNickname) {
+        User me = getUserByNickname(myNickname);
+        List<ChatMessage> unread =
+                chatMessageRepository.findByRoomAndReceiverAndReadFlagIsFalse(room, me);
+        unread.forEach(ChatMessage::markRead);
+        // @Transactional 이라 flush 시점에 자동 반영됨
+    }
 }

@@ -5,7 +5,7 @@ import com.Camp.domain.user.User;
 import com.Camp.domain.user.UserRepository;
 import com.Camp.dto.follow.FriendResponse;
 import com.Camp.dto.follow.PendingFriendResponse;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -115,5 +115,11 @@ public class FriendService {
                 )
                 .orElseThrow(() -> new IllegalArgumentException("대기중인 친구 요청이 없습니다."));
         req.reject();
+    }
+    @Transactional(readOnly = true)
+    public long getFriendCountByNickname(String nickname) {
+        User user = userRepository.findByNickname(nickname)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+        return friendShipRepository.countByOwner(user);
     }
 }

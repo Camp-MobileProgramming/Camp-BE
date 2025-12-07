@@ -34,6 +34,7 @@ public class WebSocketController extends TextWebSocketHandler {
         Long ts;          // 서버가 채움 (ms)
 
         String nickname;  // 추가: 닉네임 (join에서 받음, loc에서는 서버가 채움)
+        String locationVisibility;
     }
 
     @Override
